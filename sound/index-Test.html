@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>语音识别示例</title>
+</head>
+
+<body>
+    <button id="start">开始识别</button>
+    <p id="result">识别结果将在这里显示</p>
+
+    <script>
+        const startBtn = document.getElementById('start')
+        const resultPara = document.getElementById('result')
+
+        // 兼容性处理
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+
+        if (!SpeechRecognition) {
+            alert("你的浏览器不支持语音识别，请使用 Chrome。")
+        } else {
+            const recognition = new SpeechRecognition()
+
+            recognition.lang = 'zh-CN' // 设置语言为中文
+            recognition.continuous = false // 是否持续识别
+            recognition.interimResults = false // 是否返回中间结果
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript
+                resultPara.textContent = "你说的是：" + transcript
+            }
+
+            recognition.onerror = function (err) {
+                resultPara.textContent = "识别错误：" + err.error
+            }
+
+            startBtn.onclick = () => {
+                recognition.start()
+                resultPara.textContent = "正在监听，请讲话..."
+            }
+        }
+    </script>
+</body>
+
+</html>

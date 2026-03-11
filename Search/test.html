@@ -1,0 +1,32 @@
+<!--
+ * @Author: lenovor7000 2393392925@qq.com
+ * @Date: 2025-02-23 13:01:34
+ * @LastEditors: lenovor7000 2393392925@qq.com
+ * @LastEditTime: 2025-02-23 13:28:17
+ * @FilePath: \hcj\js2025\javascript30\Search\test.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js获取json资源</title>
+</head>
+
+<body>
+    <script>
+        const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+
+        // fetch(endpoint).then(blob => console.log(blob)
+        // )
+
+
+        fetch(endpoint).then(blob => blob.json()).then(data => console.log(data)
+        )
+    </script>
+</body>
+
+</html>

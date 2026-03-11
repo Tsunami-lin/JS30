@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+
+<body>
+  <script>
+    const arrEaster = []
+    const eastercode = "shina"
+    window.addEventListener('keyup', addKeyname)
+    function addKeyname(e) {
+      arrEaster.push(e.key)
+      arrEaster.splice(-(eastercode - 1), arrEaster.length - eastercode.length)
+      if (arrEaster.join('').includes(eastercode)) {
+        cornify_add()
+      }
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>

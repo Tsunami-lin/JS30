@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Without Articles</title>
+</head>
+
+<body>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: url("../mainimg/Fujimount.png");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #bands {
+      /* 里面 ，方形 */
+      list-style: inside square;
+      font-size: 20px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    #bands li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
+
+    #bands li:last-child {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+  </style>
+
+  <ul id="bands"></ul>
+  <script>
+
+    const ul = document.querySelector('ul')
+
+    const inventoryarr = [{ name: '遗嘱', level: 'relics', levelnum: 1 }, { name: '陈旧手稿', level: 'missions', levelnum: 2 }, { name: '假银元', level: 'memorials', levelnum: 3 }, { name: '白蛋白注射液', level: 'missions', levelnum: 2 }, { name: '羊城通', level: 'missions', levelnum: 2 }, { name: '特调鸡尾酒', level: 'missions', levelnum: 2 }]
+
+    // inventoryarr.sort((a, b) => (a.levelnum > b.levelnum) ? 1 : -1)
+    // inventoryarr.sort((a, b) => {
+    //   if (a.levelnum === b.levelnum && a.name > b.name) {
+    //     return 1
+    //   }
+    //   else if (a.levelnum === b.levelnum && a.name < b.name) {
+    //     return -1
+    //   }
+    // })
+
+    inventoryarr.sort((a, b) => {
+      if (a.levelnum !== b.levelnum) {
+        return a.levelnum - b.levelnum
+      } else {
+        return a.name.localeCompare(b.name)
+      }
+    })
+    console.log(inventoryarr)
+    ul.innerHTML = inventoryarr.map(item => `<li data-level = ${item.level}>${item.name}</li>`).join(' ')
+
+    const li = document.querySelectorAll('li')
+    console.log(li);
+
+    li.forEach(item => {
+      if (item.dataset.level === 'relics') {
+        item.style.backgroundColor = "red"
+      }
+      if (item.dataset.level === 'memorials') {
+        item.style.backgroundColor = "pink"
+      }
+      if (item.dataset.level === 'missions') {
+        item.style.backgroundColor = "green"
+      }
+    })
+
+
+
+
+  </script>
+
+</body>
+
+</html>

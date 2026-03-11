@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const testobject2 = {
+            name: 'xina'
+        }
+        const arr = testobject2 || []
+        const testobject = {
+            name: 'name'
+        }
+
+        function testfun(item1, item2) {
+            item1.push(item2)
+            return item1
+        }
+        console.log(testfun(arr, testobject));
+
+
+    </script>
+</body>
+
+</html>

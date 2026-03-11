@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型转换</title>
+</head>
+
+<body>
+    <script>
+        //关于数组浅复制的若干方法 
+        const testarr = ['xina', '21']
+        const newarr = testarr
+        // newarr[1] = '22'
+
+        const newarr1 = testarr.slice()
+        newarr1[1] = '22'
+
+        const newarr2 = Array.from(testarr)
+        newarr2[0] = 'tsunami'
+
+        const newarr3 = [...testarr]
+        newarr3[2] = 'xuequnzhi'
+
+        const newarr4 = []
+        newarr4.push(...testarr)
+        newarr4[0] = 'shina'
+
+        const newarr5 = [].concat(testarr)
+        newarr5[0] = 'linyusheng'
+        // 如果这样子些，那么就没有东西承接结果了
+        // newarr5.concat(testarr)
+        // newarr5[0] = 'linyusheng'
+
+
+
+        console.log(newarr1);
+        console.log(newarr2);
+        console.log(newarr3);
+        console.log(newarr4);
+        console.log(newarr5);
+
+        console.log(testarr);
+        console.clear()
+
+
+        const testobject = {
+            name: 'xina',
+            age: 21
+        }
+
+        const testobjectplus = {
+            name: 'xina',
+            age: 21,
+            address: {
+                number: 16,
+                value: 'guangzhou'
+            }
+        }
+
+        const newobject1 = Object.assign({}, testobject)
+        newobject1.name = 'shina'
+        newobject1.age = 22
+
+        const newobject2 = JSON.parse(JSON.stringify(testobject))
+        newobject2.name = 'haha'
+        newobject2.age = 23
+
+        const newobjectplus1 = JSON.parse(JSON.stringify(testobjectplus))
+        newobjectplus1.address.number = 17
+        newobjectplus1.address.value = 'jinbixincheng'
+
+        console.log(newobject1);
+        console.log(newobject2);
+
+
+        console.log(newobjectplus1);
+
+        console.log(testobject);
+        console.log(testobjectplus);
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

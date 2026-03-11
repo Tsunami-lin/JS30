@@ -1,0 +1,62 @@
+html {
+    font-size: 10px;
+    /* 使用颜色过度来实现对背景图片的透明化*/
+    background: bottom center linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(img/piano.png);
+    background-size: cover;
+}
+
+
+body,
+html {
+    margin: 0px;
+    padding: 0px;
+    /* 字体类型 */
+    font-family: sans-serif;
+}
+
+
+.keys {
+    display: flex;
+    /* 根据空间自由缩减，大小根据内容决定 */
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+.key {
+    border: 4px solid black;
+    border-radius: 5px;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem .5rem;
+    width: 100px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 左右 上下 大小 颜色 */
+    text-shadow: 0 0 50px black;
+
+    /* 过渡 */
+    transition: all .07s;
+}
+
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+    display: block;
+    font-size: 40px;
+}
+
+.sound {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    /* 字母间距 */
+    letter-spacing: 1px;
+    color: #ffc600;
+}

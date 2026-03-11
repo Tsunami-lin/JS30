@@ -1,0 +1,96 @@
+<!--
+ * @Author: lenovor7000 2393392925@qq.com
+ * @Date: 2025-02-13 17:58:31
+ * @LastEditors: lenovor7000 2393392925@qq.com
+ * @LastEditTime: 2025-02-13 20:21:03
+ * @FilePath: \hcj\js2025\javascript30\PictureVariables\index-START.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input type="color" name="base" value="#ffc600">
+  </div>
+
+  <img src="../DrumKit/img/piano.png">
+
+  <style>
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+
+    :root {
+      --base: #fff;
+      --spacing: 10px;
+      --blur: 5px
+    }
+
+    img {
+      /* 透明度 */
+      filter: blur(var(--blur));
+      background: var(--base);
+      padding: var(--spacing);
+    }
+
+    body {
+      text-align: center;
+    }
+
+    body {
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+  </style>
+  <script>
+
+    function imgupdate() {
+      const endpark = this.dataset.sizing || ""
+      console.log(endpark);
+
+      // document.documentElement.style.setProperty(`--${this.name}`, this.value + endpark)
+      document.documentElement.style.setProperty("--" + this.name, this.value + endpark)
+
+    }
+
+    const inputList = document.querySelectorAll('input')
+
+    inputList.forEach((item) => {
+      item.addEventListener('change', imgupdate)
+      // item.addEventListener('mousemove', imgupdate)
+    })
+
+
+
+
+  </script>
+
+</body>
+
+</html>

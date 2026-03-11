@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+
+    }
+
+    h1 {
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+      font-size: 100px;
+
+    }
+  </style>
+  <script>
+    const hero = document.querySelector('.hero')
+    const heroin = hero.querySelector('h1')
+
+
+
+    const limit = 100
+
+
+    function shadowfun(e) {
+      const { offsetWidth: x, offsetHeight: y } = hero
+      // console.log(x, y);
+      let { offsetX: ex, offsetY: ey } = e
+      if (this !== e.target) {
+        ex += e.target.offsetLeft
+        ey += e.target.offsetHeight
+      }
+      // 这个值要表达出正负值
+      // 这个值的范围取到+-limit
+      const shadowx = Math.floor((ex / x) * limit - (limit / 2))
+      const shadowy = Math.floor((ey / y) * limit - (limit / 2))
+
+
+
+      // heroin.style.textShadow = `${shadowx}px,${shadowy}px,0,pink`
+      // 这里不能使用+ - 号来代替*-1的算法，因为在css中没有--a的写法
+      heroin.style.textShadow = `${shadowx}px ${shadowy}px 0 pink,${shadowx * -1}px ${shadowy * -1}px 0 red`
+      console.log(shadowx, shadowy);
+
+    }
+
+
+
+
+
+
+
+    hero.addEventListener('mousemove', shadowfun)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组api-reduce的探究</title>
+</head>
+
+<body>
+    <script>
+        const testobj = {
+            uname: 'lin',
+            uage: 14,
+            address: "nongjianshuo"
+        }
+        const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+        const whatclass = data.reduce((obj, item) => {
+            if (!obj[item]) {
+                obj[item] = 0
+            }
+            obj[item]++
+            return obj
+        }, {})
+        console.log(whatclass);
+        console.log(typeof (whatclass));
+        console.log(testobj['uname']);
+
+        const testobj2 = {
+
+        }
+
+        testobj2['uname'] = 0
+        console.log(testobj2)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!--
+ * @Author: lenovor7000 2393392925@qq.com
+ * @Date: 2025-02-24 14:48:26
+ * @LastEditors: lenovor7000 2393392925@qq.com
+ * @LastEditTime: 2025-03-12 19:48:34
+ * @FilePath: \hcj\js2025\javascript30\draw\index-START.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+
+<body>
+  <canvas id="draw" width="800" height="800"></canvas>
+  <script>
+
+    // 画布部署
+    const canvas = document.querySelector('#draw')
+    const drawpaper = canvas.getContext('2d')
+
+    //控件参数
+    let isdraw = false
+    let lastx = 0
+    let lasty = 0
+    let colorchange = 0
+
+    //线条修饰参数
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    drawpaper.strokeStyle = '#BADA55';
+    drawpaper.lineJoin = 'round';
+    drawpaper.lineCap = 'butt';
+    drawpaper.lineWidth = 50;
+
+
+
+    function test(testitem) {
+      console.log(testitem);
+
+    }
+    test(drawpaper)
+
+
+
+    function draw(e) {
+      if (isdraw) {
+        // lastx = e.offsetX
+        // lasty = e.offsetY
+        [lastx, lasty] = [e.offsetX, e.offsetY]
+
+        colorchange += 0.5
+        if (colorchange === 360) {
+          colorchange = 0
+        }
+        test(colorchange)
+
+        drawpaper.strokeStyle = `hsl(${colorchange},100%,50%)`
+        drawpaper.beginPath();
+        drawpaper.moveTo(lastx, lasty)
+        drawpaper.lineTo(e.offsetX, e.offsetY)
+        drawpaper.stroke()
+      } else {
+        return
+      }
+    }
+
+
+    canvas.addEventListener('mousemove', draw)
+    canvas.addEventListener('mousedown', (e) => {
+      isdraw = true
+    });
+    canvas.addEventListener('mouseup', () => isdraw = false);
+    canvas.addEventListener('mouseout', () => isdraw = false);
+
+
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+  </style>
+
+</body>
+
+</html>

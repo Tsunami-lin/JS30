@@ -1,0 +1,122 @@
+<!--
+ * @Author: lenovor7000 2393392925@qq.com
+ * @Date: 2025-02-12 18:23:28
+ * @LastEditors: lenovor7000 2393392925@qq.com
+ * @LastEditTime: 2025-02-13 17:28:11
+ * @FilePath: \hcj\js2025\javascript30\Clock\index-START.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+
+<body>
+
+
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
+    </div>
+  </div>
+
+
+  <style>
+    html {
+      background: #018DED url(background.jpg);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+      /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.1s;
+      transition-timing-function: cubic-bezier(0.4, 0.9, 0.75, -2.54);
+
+    }
+  </style>
+
+  <script>
+
+    let fulltimes = 0
+    function Handmove() {
+
+      const date = new Date()
+      const second = date.getSeconds()
+      // const second = 0
+      const min = date.getMinutes()
+      const hours = date.getHours()
+
+      const handsecond = document.querySelector('.second-hand')
+      const handhours = document.querySelector('.hour-hand')
+      const handmin = document.querySelector('.min-hand')
+
+      if (second === 0) {
+        fulltimes++
+      }
+      console.log(fulltimes);
+
+
+      const degsecond = (second / 60) * 360 + 90 + fulltimes * 360
+      const degmin = (min / 60) * 360 + 90
+      const deghours = (hours / 12) * 360 + 90
+
+      handsecond.style.transform = `rotate(${degsecond}deg)`
+      handmin.style.transform = `rotate(${degmin}deg)`
+      handhours.style.transform = `rotate(${deghours}deg)`
+    }
+
+
+    Handmove()
+
+    setInterval(Handmove, 1000)
+
+  </script>
+</body>
+
+</html>

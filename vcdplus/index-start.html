@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Get User Media Code Along!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="photobooth">
+    <div class="controls">
+      <button onClick="takePhoto()">Take Photo</button>
+      <div class="rgb">
+        <label for="rmin">Red Min:<span class="v-rmin"></span></label>
+        <input type="range" min=0 max=255 name="rmin">
+        <label for="rmax">Red Max:<span class="v-rmax"></span></label>
+        <input type="range" min=0 max=255 name="rmax">
+
+        <br>
+
+        <label for="gmin">Green Min:<span class="v-gmin"></span></label>
+        <input type="range" min=0 max=255 name="gmin">
+        <label for="gmax">Green Max:<span class="v-gmax"></span></label>
+        <input type="range" min=0 max=255 name="gmax">
+
+        <br>
+
+        <label for="bmin">Blue Min:<span class="v-bmin"></span></label>
+        <input type="range" min=0 max=255 name="bmin">
+        <label for="bmax">Blue Max:<span class="v-bmax"></span></label>
+        <input type="range" min=0 max=255 name="bmax">
+      </div>
+    </div>
+
+    <canvas class="photo"></canvas>
+
+    <video class="player"></video>
+
+    <!-- 新添加链接位置 -->
+    <div class="strip"></div>
+
+  </div>
+
+  <audio class="snap" src="./sound/boom.wav" hidden></audio>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

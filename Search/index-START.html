@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+  <script>
+    //获得json数据
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const dealarr = []
+    fetch(endpoint).then(middeal => middeal.json()).then(middeal2 => dealarr.push(...middeal2))
+
+
+    //设计筛选函数
+    function filterDealarr(keyinput, dealarr) {
+      const regex = new RegExp(keyinput, 'ig')
+      return dealarr.filter(place => {
+        return place.city.match(regex) || place.state.match(regex)
+      })
+    }
+
+
+    //主函数，检索并打印内容
+
+    const search = document.querySelector('.search')
+    const suggestions = document.querySelector('.suggestions')
+
+    search.addEventListener('change', browserpush)
+    search.addEventListener('keyup', browserpush)
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function browserpush() {
+      const browserarr = filterDealarr(this.value, dealarr);
+      const html = browserarr.map(place => {
+        const regex = new RegExp(this.value, 'ig')
+        const cityname = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+        const statename = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+        return `
+          <li>
+               <span class="name">${cityname},${statename}</span>
+               <span class="population">${numberWithCommas(place.population)}</span>
+
+          </li>
+          `
+      }).join(' ')
+      suggestions.innerHTML = html
+    }
+
+  </script>
+</body>
+
+</html>

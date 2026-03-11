@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Click and Drag</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+  <div class="items">
+    <div class="item item1">01</div>
+    <div class="item item2">02</div>
+    <div class="item item3">03</div>
+    <div class="item item4">04</div>
+    <div class="item item5">05</div>
+    <div class="item item6">06</div>
+    <div class="item item7">07</div>
+    <div class="item item8">08</div>
+    <div class="item item9">09</div>
+    <div class="item item10">10</div>
+    <div class="item item11">11</div>
+    <div class="item item12">12</div>
+    <div class="item item13">13</div>
+    <div class="item item14">14</div>
+    <div class="item item15">15</div>
+    <div class="item item16">16</div>
+    <div class="item item17">17</div>
+    <div class="item item18">18</div>
+    <div class="item item19">19</div>
+    <div class="item item20">20</div>
+    <div class="item item21">21</div>
+    <div class="item item22">22</div>
+    <div class="item item23">23</div>
+    <div class="item item24">24</div>
+    <div class="item item25">25</div>
+  </div>
+
+  <script>
+    //被操作移动的盒子
+    const boxMove = document.querySelector(".items")
+    //初始鼠标位置
+    let mouseStar
+    //初始偏移
+    let newscrollLeft = 0
+    //鼠标移动量
+    let mouseDistance
+    //布尔
+    let iswork
+
+    boxMove.addEventListener('mouseleave', () => {
+      iswork = false
+    })
+    boxMove.addEventListener('mouseup', () => {
+      iswork = false
+
+    })
+    boxMove.addEventListener('mousedown', (e) => {
+      iswork = true
+      newscrollLeft = boxMove.scrollLeft
+      mouseStar = e.pageX
+    })
+    boxMove.addEventListener('mousemove', (e) => {
+      if (!iswork) return
+      e.preventDefault();
+      let mouseEnd = e.pageX;
+      mouseDistance = 2 * (mouseEnd - mouseStar)
+      console.log(mouseDistance);
+      boxMove.scrollLeft = newscrollLeft + mouseDistance
+    })
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

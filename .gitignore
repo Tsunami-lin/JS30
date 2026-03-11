@@ -1,0 +1,20 @@
+# 依赖包文件夹（最重要！通常包含几万个文件）
+node_modules/
+
+# 系统缓存文件
+.DS_Store
+Thumbs.db
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 构建产物（如果有 dist 或 build 文件夹）
+dist/
+build/
+
+# 日志文件
+*.log
+npm-debug.log*
